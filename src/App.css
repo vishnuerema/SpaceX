@@ -1,38 +1,141 @@
-.App {
-  text-align: center;
+body{
+  background-color: #eee;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+p{
+  margin-bottom: 0px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.common_Spacexdata{
+  padding: 10px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.filterandvalues_Spacexdata {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+}
+.bg_white{
+  background-color: #fff;
+}
+.filtervalue_Spacexdata{
+  flex-basis: 80%;
+}
+.launchbtn {
+  background: #b7e494;
+  width: 80px;
+  height: 35px;
+}
+.launchbtn:hover {
+  background: #67c71d;
+}
+
+.launch_all_btn {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.launchyear_filter {
+  text-align: center;
+  padding: 0px 20px;
+  margin-bottom: 30px;
+}
+.filter_Spacexdata {
+  flex-basis: 19%;
+  padding: 10px;
+  border-radius: 4px;
+}
+.launch_hr {
+  width: 80%;
+  border: 0.6px solid #cccbcb;
+  margin: auto;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+.head_Spacexdata {
+  font-size: 30px;
+  font-weight: bold;
+}
+.filter_head {
+  font-size: 20px;
+  font-weight: bold;
+}
+.filtervalue_Spacexdata_img {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.Spacexdata_imgdata {
+  flex-basis: 24%;
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.Spacexdata_imgs {
+  width: 100%;
+  margin: auto;
+  background-color: #eee;
+  margin-bottom: 20px;
+}
+.spacex_img {
+  height: 220px;
+  margin: auto;
+  display: block;
+}
+.img_card_head {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2b4780;
+}
+.img_card_missionid {
+  font-size: 16px;
+  font-weight: bold;
+}
+.txt_card_date{
+  font-weight: normal;
+  color: blue;
+}
+@media only screen and (max-width: 1199px) {
+  .filtervalue_Spacexdata {
+    flex-basis: 74%;
+}
+.filter_Spacexdata {
+  flex-basis: 24%;
+}
+}
+  @media only screen and (max-width: 991px) {
+  .Spacexdata_imgdata {
+    flex-basis: 49%;
+  }
+  .filtervalue_Spacexdata {
+    flex-basis: 68%;
+}
+.filter_Spacexdata {
+  flex-basis: 30%;
+}
+}
+@media only screen and (max-width: 767px) {
+.filtervalue_Spacexdata_img {
+  flex-direction: column;
+}
+.filtervalue_Spacexdata {
+  flex-basis: 50%;
+}
+.filter_Spacexdata {
+  flex-basis: 45%;
+}
 }
 
-.App-link {
-  color: #61dafb;
+@media only screen and (max-width: 576px) {
+  .filter_Spacexdata{
+    flex-basis: 100%;
+    margin-bottom: 20px;
+  }
+  .filterandvalues_Spacexdata {
+    flex-direction: column;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.filtervalue_Spacexdata_img{
+  flex-direction: column;
+}
+.head_Spacexdata {
+  font-size: 24px;
+}
 }
