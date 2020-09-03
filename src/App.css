@@ -30,6 +30,10 @@ p{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+}
+.btn_launch {
+  flex-basis: 50%;
   margin-bottom: 15px;
 }
 .launchyear_filter {
@@ -41,6 +45,7 @@ p{
   flex-basis: 19%;
   padding: 10px;
   border-radius: 4px;
+  height: 100%;
 }
 .launch_hr {
   width: 80%;
@@ -92,6 +97,15 @@ p{
 .txt_card_date{
   font-weight: normal;
   color: blue;
+}
+.developer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.devname {
+  font-size: 22px;
+  margin-right: 10px;
 }
 @media only screen and (max-width: 1199px) {
   .filtervalue_Spacexdata {

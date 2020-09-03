@@ -6,7 +6,9 @@ import './App.css';
     {
       super();
       this.state = {
+        initialdata: [],
         data: [],
+        date :[2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020]
       }
     }
 
@@ -14,23 +16,54 @@ import './App.css';
       fetch("https://api.spacexdata.com/v3/launches?limit=100")
       .then(res => res.json())
       .then(json => {
-        // console.log(json)
+        console.log(json)
         this.setState({
+          initialdata: json,
           data: json,
         })
       });
 
-      fetch("https://api.spaceXdata.com/v3/launches?limit=100&launch_success=true")
+  }
+  launchsuccessfilter = () =>{
+    this.triggerApi('https://api.spaceXdata.com/v3/launches?limit=100&launch_success=true')
+  }
+  
+  launchfalsefilter = () =>{
+    this.triggerApi('https://api.spaceXdata.com/v3/launches?limit=100&launch_success=false')
+
+  }
+    
+  landsuccessfilter = () =>{
+    this.triggerApi('https://api.spaceXdata.com/v3/launches?limit=100&land_success=true')
+  }
+
+  landfalsefilter = () =>{
+    this.triggerApi('https://api.spaceXdata.com/v3/launches?limit=100&land_success=false')
+  }
+
+    triggerApi=(url)=>{
+      fetch(url)
       .then(res => res.json())
       .then(json => {
         console.log(json)
         this.setState({
+          initialdata: json,
           data: json,
         })
       });
-  }
+    }
+
+   yearFilter =(yr)=>{
+      let newdata =[];
+      newdata =this.state.initialdata.filter((filterdata)=>filterdata.launch_year==yr)
+      console.log(newdata)
+      this.setState({
+        data : newdata
+      })
+   }
+
   render() {
-    const { data } = this.state
+    const { data,date } = this.state
   return (
     <div className="Spacexdata_all">
       <div className="common_Spacexdata">
@@ -46,36 +79,10 @@ import './App.css';
               </p>
               <hr className="launch_hr" />
               <div className="launch_all_btn">
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2006</button></div>
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2007</button></div>
-              </div>
-              <div className="launch_all_btn">
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2008</button></div>
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2009</button></div>
-              </div>
-              <div className="launch_all_btn">
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2010</button></div>
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2011</button></div>
-              </div>
-              <div className="launch_all_btn">
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2012</button></div>
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2013</button></div>
-              </div>
-              <div className="launch_all_btn">
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2014</button></div>
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2015</button></div>
-              </div>
-              <div className="launch_all_btn">
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2016</button></div>
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2017</button></div>
-              </div>
-              <div className="launch_all_btn">
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2018</button></div>
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2019</button></div>
-              </div>
-              <div className="launch_all_btn">
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">2020</button></div>
-              </div>
+              {date.map((val,i) => (
+                <div  key={i} className="btn_launch"><button type="button" onClick={()=>{this.yearFilter(val)}} className="btn button launchbtn">{val}</button></div>
+                ))}
+                </div>
             </div>
             <div className="launchyear_filter">
             <p className="launch_year">
@@ -83,8 +90,8 @@ import './App.css';
               </p>
               <hr className="launch_hr" />
               <div className="launch_all_btn">
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">True</button></div>
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">False</button></div>
+                <div className="btn_launch"><button type="button" onClick={()=>{this.launchsuccessfilter()}} className="btn button launchbtn">True</button></div>
+                <div className="btn_launch"><button type="button" onClick={()=>{this.launchfalsefilter()}} className="btn button launchbtn">False</button></div>
               </div>
             </div>
             <div className="launchyear_filter">
@@ -93,8 +100,8 @@ import './App.css';
               </p>
               <hr className="launch_hr" />
               <div className="launch_all_btn">
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">True</button></div>
-                <div className="btn_launch"><button type="button" className="btn button launchbtn">False</button></div>
+                <div className="btn_launch"><button type="button" onClick={()=>{this.landsuccessfilter()}} className="btn button launchbtn">True</button></div>
+                <div className="btn_launch"><button type="button" onClick={()=>{this.landfalsefilter()}} className="btn button launchbtn">False</button></div>
               </div>
             </div>
           </div>
@@ -107,10 +114,10 @@ import './App.css';
                   </div>
                   <div className="Spacexdata_img_data">
                       <h6 className="img_card_head">FalconSat#{val.flight_number}</h6>
-                      <p className="img_card_missionid">Mission ids</p>
+                      <p className="img_card_missionid">Mission ids : <span className="txt_card_date">{val.mission_id}</span></p>
                       <p className="img_card_missionid">Launch Year : <span className="txt_card_date">{val.launch_year}</span></p>
-                      <p className="img_card_missionid">Successful Launch : <span className="txt_card_date">{val.launch_success}</span></p>
-                      <p className="img_card_missionid">Successful Landing : <span className="txt_card_date"></span></p>
+                      <p className="img_card_missionid">Successful Launch : <span className="txt_card_date">{val.launch_success ? "true":"false"}</span></p>
+                      <p className="img_card_missionid">Successful Landing : <span className="txt_card_date">{val.rocket.first_stage.cores[0].land_success ? "true":"false"}</span></p>
                   </div>
                 </div>
 ))}
@@ -118,6 +125,7 @@ import './App.css';
          </div>
         </div>
       </div>
+      <div class="developer"><h1 className="devname">Developed by : </h1>Vishnue</div>
     </div>
   );
 }
