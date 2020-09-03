@@ -55,7 +55,7 @@ import './App.css';
 
    yearFilter =(yr)=>{
       let newdata =[];
-      newdata =this.state.initialdata.filter((filterdata)=>filterdata.launch_year == yr)
+      newdata =this.state.initialdata.filter((filterdata)=>filterdata.launch_year === yr.toString())
       console.log(newdata)
       this.setState({
         data : newdata
